@@ -1,0 +1,39 @@
+.text-center{
+     text-align: center;
+ }
+.text-left{
+    text-align: left;
+}
+.text-right{
+    text-align: right;
+}
+.media>p {
+    color: #444;
+}
+.bar-nav {
+    background-color: #209dc2;
+    color: #ffffff;
+}
+.title {
+    color: #ffffff;
+}
+.bar-nav .icon {
+    color: #ffffff;
+}
+.bar-header-secondary {
+    background-color: #eeeeee;
+}
+
+.popover {
+    height:100px;
+    width: 100%;
+}
+
+.font-48{
+    font-size: 48px;
+}
+
+a{
+    color:#000000;
+    text-decoration: none;
+}

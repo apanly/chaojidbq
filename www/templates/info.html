@@ -1,0 +1,70 @@
+<ion-view view-title="超级逗表情">
+    <ion-nav-buttons side="left">
+        <button class="button back-button buttons button-clear header-item" ng-click="goBack()">
+            <i class="icon ion-ios-arrow-back">广场</i>
+        </button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button class="button back-button buttons button-clear header-item" ng-click="openPopover()">
+            <i class="iconfont icon-more"></i>
+        </button>
+    </ion-nav-buttons>
+    <ion-content>
+        <ion-scroll zooming="true" direction="x" style="width:100%">
+            <ul class="row">
+                <li class="col" ng-repeat="image in info.gallary track by $index"><img src="{{image.small_url}}" class='img-responsive' width="50px" height="50px"/></li>
+            </ul>
+        </ion-scroll>
+        <div class="row">
+            <div class="col text-center">
+                <img src='{{info.current.url}}' class='img-responsive' style="width: 200px;"/>
+            </div>
+        </div>
+        <div class="row" style="margin: 10px 0;">
+            <div class="col col-33 text-left">
+                <i class="iconfont icon-zan font-48 calm"></i>
+            </div>
+            <div class="col col-33 text-center">
+                <i class="iconfont icon-wechat font-48 balanced" ng-click="share2wechat()"></i>
+            </div>
+            <div class="col col-33 text-right">
+                <i class="iconfont icon-qqmoren font-48 assertive" ng-click="share2qq()"></i>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col text-left">
+                <button class="button icon-left ion-chevron-left button-energized">
+                    上一个
+                </button>
+            </div>
+            <div class="col text-right">
+                <button class="button icon-right ion-chevron-right button-energized">
+                    下一个
+                </button>
+            </div>
+        </div>
+
+        <div>
+            <div class="list card" ng-hide = "{{ad_switch}}" >
+                <div class="item">
+                    <h2>推广标题</h2>
+                </div>
+                <div class="item item-image">
+                    <img class="full-image" src="img/ionic.png">
+                </div>
+            </div>
+        </div>
+
+    </ion-content>
+    <script id="my-popover.html" type="text/ng-template">
+        <ion-modal-view>
+            <ion-header-bar>
+                <h1 class="title">My Modal title</h1>
+            </ion-header-bar>
+            <ion-content>
+                Hello!
+            </ion-content>
+        </ion-modal-view>
+    </script>
+</ion-view>
+

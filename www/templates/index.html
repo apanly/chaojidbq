@@ -1,0 +1,15 @@
+<ion-view view-title="大家都在发">
+    <ion-content class="padding">
+        <!--下拉刷新-->
+        <ion-refresher pulling-text="下拉刷新" on-refresh="doRefresh()"></ion-refresher>
+        <div class="row row-wrap" >
+            <div class="col col-33" ng-repeat="image in images track by $index" >
+                <a href="#/info/{{image.id}}">
+                    <img src='{{image.url}}' class='img-responsive' width="100%" height="100"/>
+                </a>
+            </div>
+        </div>
+        <!-- ion-infinite-scroll 上拉加载数据指令 distance默认1% nf-if的值为false时，就禁止执行on-infinite  -->
+        <ion-infinite-scroll ng-if="!domore" on-infinite="loadMore()" distance="1%" ></ion-infinite-scroll>
+    </ion-content>
+</ion-view>

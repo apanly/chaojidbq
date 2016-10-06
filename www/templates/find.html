@@ -1,0 +1,14 @@
+<ion-view view-title="发现">
+    <ion-content>
+        <div class="row row-wrap" >
+            <div class="col col-25" ng-repeat="item in list track by $index" style="border: solid 1px #dddddd;">
+                <a  href="javascript:void(0);" ng-click="openUrl('{{item.url}}')">
+                    <div class="text-center">
+                        <img src='{{item.icon}}' class='img-responsive' style="height: 64px;width: 64px;"/>
+                    </div>
+                    <div class="text-center">{{item.title}}</div>
+                </a>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
