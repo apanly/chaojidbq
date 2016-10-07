@@ -76,7 +76,7 @@ app.run(function ($ionicPlatform) {
     });
 });
 
-app.controller("indexCtrl", function ($scope,$http,$ionicLoading,global_config) {
+app.controller("indexCtrl", function ($scope,$http,$ionicLoading,$timeout,$ionicScrollDelegate,$q,global_config) {
     $scope.images = [];
     var params = {
         p:0
@@ -87,8 +87,7 @@ app.controller("indexCtrl", function ($scope,$http,$ionicLoading,global_config) 
             $ionicLoading.show({
                 template: '拼命加载...',
                 animation: 'fade-in',
-                showBackdrop: true,
-                duration: global_config.timeout
+                showBackdrop: true
             }).then(function(){
                 //console.log("The loading indicator is now displayed");
             });
@@ -104,17 +103,7 @@ app.controller("indexCtrl", function ($scope,$http,$ionicLoading,global_config) 
         params.p = 0;
         params.p++;
         indicator_ops.show();
-        $http.get( common_ops.buildUrl("/v1/emoticon/default/index",params),{ timeout:global_config.timeout } )
-            .success(function( res ) {
-                $scope.images = [];
-                var data = res.data;
-                for( var idx in data ){
-                    $scope.images.push( data[idx] );
-                }
-            }).finally(function() {
-                indicator_ops.hide();
-                $scope.$broadcast('scroll.refreshComplete');
-            });
+        //http_request(1);
     };
 
     $scope.domore = false;
@@ -122,23 +111,52 @@ app.controller("indexCtrl", function ($scope,$http,$ionicLoading,global_config) 
     $scope.loadMore = function(){
         params.p++;
         indicator_ops.show();
+        //http_request(2);
+    };
+
+    /*
+     * @param state  1 => fresh 2 => load more
+     */
+    var http_request = function( state ){
+        params.p++;
+        indicator_ops.show();
         $http.get( common_ops.buildUrl("/v1/emoticon/default/index",params),{ timeout:global_config.timeout } )
             .success(function( res ) {
+                if( state == 1  ){
+                    $scope.images = [];
+                }
                 var data = res.data;
                 if( data.length == 0 ){
                     $scope.domore = true;
                     return;
                 }
-
                 for( var idx in data ){
                     $scope.images.push( data[idx] );
                 }
 
-            }).finally(function() {
-                indicator_ops.hide();
-                $scope.$broadcast('scroll.infiniteScrollComplete');
+                $ionicScrollDelegate.resize();
+                error_handler( state );
+
+            }).error(function (errorData, errorStatus, errorHeaders, errorConfig) {
+                console.log(errorData);
+                error_handler( state );
             });
     };
+
+    var error_handler = function( state ){
+        indicator_ops.hide();
+        if( state == 1  ){
+            $timeout(function () {
+                $scope.$broadcast('scroll.refreshComplete');
+            }, 500);
+        }else{
+            $timeout(function () {
+                $scope.$broadcast('scroll.infiniteScrollComplete');
+            }, 500);
+        }
+    };
+    //第一次进来就
+    $scope.doRefresh();
 
 
 });

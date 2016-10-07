@@ -1,5 +1,5 @@
 <ion-view view-title="大家都在发">
-    <ion-content class="padding">
+    <ion-content class="padding" delegate-handle="mainScroll">
         <!--下拉刷新-->
         <ion-refresher pulling-text="下拉刷新" on-refresh="doRefresh()"></ion-refresher>
         <div class="row row-wrap" >
@@ -10,6 +10,6 @@
             </div>
         </div>
         <!-- ion-infinite-scroll 上拉加载数据指令 distance默认1% nf-if的值为false时，就禁止执行on-infinite  -->
-        <ion-infinite-scroll ng-if="!domore" on-infinite="loadMore()" distance="1%" ></ion-infinite-scroll>
+        <ion-infinite-scroll ng-if="!domore" spinner="spiral" distance="1%" immediate-check="false" on-infinite="loadMore()" ></ion-infinite-scroll>
     </ion-content>
 </ion-view>
