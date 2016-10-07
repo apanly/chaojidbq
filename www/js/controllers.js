@@ -137,8 +137,7 @@ angular.module('ionic.controllers', [])
         if( $ionicHistory.backView() ){
             $ionicHistory.goBack();
         }else{
-            $state.go("tabs.index");
-            
+            $state.go("tabs.index")
         }
     };
 
