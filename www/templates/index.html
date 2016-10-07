@@ -5,7 +5,7 @@
         <div class="row row-wrap" >
             <div class="col col-33" ng-repeat="image in images track by $index" >
                 <a href="#/info/{{image.id}}">
-                    <img src='{{image.url}}' class='img-responsive' width="100%" height="100"/>
+                    <img ng-src='{{image.url}}' class='img-responsive' width="100%" height="100"/>
                 </a>
             </div>
         </div>

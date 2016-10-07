@@ -12,12 +12,12 @@
     <ion-content>
         <ion-scroll zooming="true" direction="x" style="width:100%">
             <ul class="row">
-                <li class="col" ng-repeat="image in info.gallary track by $index"><img src="{{image.small_url}}" class='img-responsive' width="50px" height="50px"/></li>
+                <li class="col" ng-repeat="image in info.gallary track by $index"><img ng-src="{{image.small_url}}" class='img-responsive' width="50px" height="50px"/></li>
             </ul>
         </ion-scroll>
         <div class="row">
             <div class="col text-center">
-                <img src='{{info.current.url}}' class='img-responsive' style="width: 200px;"/>
+                <img ng-src='{{info.current.url}}' class='img-responsive' style="width: 200px;"/>
             </div>
         </div>
         <div class="row" style="margin: 10px 0;">
