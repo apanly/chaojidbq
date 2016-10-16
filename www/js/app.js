@@ -1,4 +1,4 @@
-var app = angular.module('starter', ['ionic','ionic.controllers','ionic.routes','ionic.services']);
+var app = angular.module('starter', ['ionic','ionic.controllers','ionic.routes','ionic.services','ionic-cache-src']);
 
 
 app.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
@@ -42,6 +42,6 @@ app.run(function ($ionicPlatform,$rootScope,$timeout,AppUpdateService) {
                 AppUpdateService.checkVersion( $rootScope );
             }, 2000);
         }
-
+        
     });
 });

@@ -4,20 +4,25 @@
             <i class="icon ion-ios-arrow-back">广场</i>
         </button>
     </ion-nav-buttons>
-    <ion-nav-buttons side="right">
-        <button class="button back-button buttons button-clear header-item" ng-click="openPopover()">
-            <i class="iconfont icon-more"></i>
-        </button>
-    </ion-nav-buttons>
+    <!--<ion-nav-buttons side="right" ng-hide="true">-->
+        <!--<button class="button back-button buttons button-clear header-item" ng-click="openPopover()">-->
+            <!--<i class="iconfont icon-more"></i>-->
+        <!--</button>-->
+    <!--</ion-nav-buttons>-->
     <ion-content>
         <ion-scroll zooming="true" direction="x" style="width:100%">
             <ul class="row">
-                <li class="col" ng-repeat="image in info.gallary track by $index"><img ng-src="{{image.small_url}}" class='img-responsive' width="50px" height="50px"/></li>
+                <li class="col" ng-repeat="image in gallary track by $index">
+                    <img cache-src="{{image.small_url}}" class='img-responsive' width="50px" height="50px"
+                         encode-uri="false"
+                    />
+                </li>
             </ul>
         </ion-scroll>
         <div class="row">
             <div class="col text-center">
-                <img ng-src='{{info.current.url}}' class='img-responsive' style="width: 200px;"/>
+                <img  cache-src="{{image.url}}" class='img-responsive' style="width: 200px;" encode-uri="false"
+                      ng-repeat="image in current track by $index" />
             </div>
         </div>
         <div class="row" style="margin: 10px 0;">
