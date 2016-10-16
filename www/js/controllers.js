@@ -119,7 +119,6 @@ angular.module('ionic.controllers', [])
 })
 .controller("infoCtrl", function ($scope,$state, $ionicModal,$ionicHistory,$stateParams,$window,$http,$ionicLoading,global_config) {
 
-
     var display_id = current_id = $stateParams.id;
 
     var indicator_ops = {
